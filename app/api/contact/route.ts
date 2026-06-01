@@ -21,6 +21,8 @@ export async function POST(request: Request) {
 
   const { name, email, phone, message } = parsed.data;
 
+  const phoneDisplay = phone?.trim() ? phone : "-";
+
   const { error } = await resend.emails.send({
     from: "Website ANI <onboarding@resend.dev>",
     to: process.env.CONTACT_EMAIL_TO ?? COMPANY_INFO.email,
@@ -29,7 +31,7 @@ export async function POST(request: Request) {
     text: [
       `Nama   : ${name}`,
       `Email  : ${email}`,
-      `Telepon: ${phone ?? "-"}`,
+      `Telepon: ${phoneDisplay}`,
       "",
       "Pesan:",
       message,

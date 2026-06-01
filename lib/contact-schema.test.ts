@@ -47,4 +47,22 @@ describe("contactSchema", () => {
     });
     expect(result.success).toBe(false);
   });
+
+  it("rejects name longer than 100 chars", () => {
+    const result = contactSchema.safeParse({
+      name: "B".repeat(101),
+      email: "budi@example.com",
+      message: "Pesan yang cukup panjang untuk lolos.",
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects message longer than 5000 chars", () => {
+    const result = contactSchema.safeParse({
+      name: "Budi",
+      email: "budi@example.com",
+      message: "a".repeat(5001),
+    });
+    expect(result.success).toBe(false);
+  });
 });

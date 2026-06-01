@@ -43,6 +43,20 @@ describe("POST /api/contact", () => {
     expect(sendMock).not.toHaveBeenCalled();
   });
 
+  it("returns 400 for malformed JSON and does not send", async () => {
+    const res = await POST(
+      new Request("http://localhost/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{ not json",
+      })
+    );
+    const json = await res.json();
+    expect(res.status).toBe(400);
+    expect(json.success).toBe(false);
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
   it("returns 500 when Resend errors", async () => {
     sendMock.mockResolvedValue({ data: null, error: { message: "fail" } });
     const res = await POST(
