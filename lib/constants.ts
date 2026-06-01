@@ -64,7 +64,7 @@ export const WHY_US: WhyUsItem[] = [
     title: "Jangkauan Nasional",
     description:
       "Menangani aset di seluruh wilayah Indonesia dengan jaringan yang luas dan terkoordinasi.",
-    icon: "Globe2",
+    icon: "Globe",
     stat: { value: 5, suffix: "+", label: "Kategori Aset" },
   },
   {
