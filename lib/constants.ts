@@ -85,8 +85,9 @@ export const WHY_US: WhyUsItem[] = [
 ];
 
 export const NAV_LINKS = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Tentang", href: "#tentang" },
-  { label: "Layanan", href: "#layanan" },
-  { label: "Kontak", href: "#kontak" },
+  { label: "Beranda", href: "/" },
+  { label: "Tentang", href: "/tentang" },
+  { label: "Layanan", href: "/layanan" },
+  { label: "Artikel", href: "/artikel" },
+  { label: "Kontak", href: "/kontak" },
 ];
