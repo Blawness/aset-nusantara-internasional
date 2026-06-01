@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 
 const sendMock = vi.fn();
 vi.mock("@/lib/resend", () => ({
-  resend: { emails: { send: (...args: unknown[]) => sendMock(...args) } },
+  getResend: () => ({ emails: { send: (...args: unknown[]) => sendMock(...args) } }),
 }));
 
 import { POST } from "@/app/api/contact/route";

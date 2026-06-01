@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { contactSchema } from "@/lib/contact-schema";
-import { resend } from "@/lib/resend";
+import { getResend } from "@/lib/resend";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export async function POST(request: Request) {
@@ -23,22 +23,27 @@ export async function POST(request: Request) {
 
   const phoneDisplay = phone?.trim() ? phone : "-";
 
-  const { error } = await resend.emails.send({
-    from: "Website ANI <onboarding@resend.dev>",
-    to: process.env.CONTACT_EMAIL_TO ?? COMPANY_INFO.email,
-    replyTo: email,
-    subject: `Inquiry baru dari ${name}`,
-    text: [
-      `Nama   : ${name}`,
-      `Email  : ${email}`,
-      `Telepon: ${phoneDisplay}`,
-      "",
-      "Pesan:",
-      message,
-    ].join("\n"),
-  });
+  try {
+    const { error } = await getResend().emails.send({
+      from: "Website ANI <onboarding@resend.dev>",
+      to: process.env.CONTACT_EMAIL_TO ?? COMPANY_INFO.email,
+      replyTo: email,
+      subject: `Inquiry baru dari ${name}`,
+      text: [
+        `Nama   : ${name}`,
+        `Email  : ${email}`,
+        `Telepon: ${phoneDisplay}`,
+        "",
+        "Pesan:",
+        message,
+      ].join("\n"),
+    });
 
-  if (error) {
+    if (error) {
+      return NextResponse.json({ success: false, error: "Gagal mengirim pesan" }, { status: 500 });
+    }
+  } catch {
+    // Missing/invalid API key or network failure — fail gracefully.
     return NextResponse.json({ success: false, error: "Gagal mengirim pesan" }, { status: 500 });
   }
 
