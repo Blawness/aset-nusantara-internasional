@@ -6,8 +6,16 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "PT Aset Nusantara Internasional",
-  description: "Pemulihan dan pemanfaatan aset bangsa dengan integritas dan legalitas resmi.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://asetnusantarainternasional.com"),
+  title: "PT Aset Nusantara Internasional | Pemulihan & Pemanfaatan Aset Bangsa",
+  description:
+    "PT Aset Nusantara Internasional — institusi terpercaya dalam pemulihan dan pemanfaatan aset bergerak, tidak bergerak, warisan, sitaan negara, dan collateral bangsa. Terdaftar resmi Kemenkumham RI.",
+  openGraph: {
+    title: "PT Aset Nusantara Internasional",
+    description: "Pemulihan dan pemanfaatan aset bangsa dengan integritas dan legalitas resmi.",
+    type: "website",
+    locale: "id_ID",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
