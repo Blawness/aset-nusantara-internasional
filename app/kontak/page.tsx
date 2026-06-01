@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ContactSection } from "@/components/sections/ContactSection";
 
+const description =
+  "Hubungi PT Aset Nusantara Internasional — alamat kantor, telepon, email, dan form inquiry.";
+
 export const metadata: Metadata = {
-  title: "Kontak | PT Aset Nusantara Internasional",
-  description:
-    "Hubungi PT Aset Nusantara Internasional — alamat kantor, telepon, email, dan form inquiry.",
+  title: "Kontak",
+  description,
+  alternates: { canonical: "/kontak" },
+  openGraph: { title: "Kontak", description, url: "/kontak", type: "website" },
 };
 
 export default function KontakPage() {

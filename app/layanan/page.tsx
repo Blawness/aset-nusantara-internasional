@@ -3,10 +3,14 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { CTASection } from "@/components/sections/CTASection";
 
+const description =
+  "Lima kategori layanan pengelolaan aset: aset bergerak, tidak bergerak, warisan, sitaan negara/bank likuidasi, dan collateral bangsa.";
+
 export const metadata: Metadata = {
-  title: "Layanan | PT Aset Nusantara Internasional",
-  description:
-    "Lima kategori layanan pengelolaan aset: aset bergerak, tidak bergerak, warisan, sitaan negara/bank likuidasi, dan collateral bangsa.",
+  title: "Layanan",
+  description,
+  alternates: { canonical: "/layanan" },
+  openGraph: { title: "Layanan", description, url: "/layanan", type: "website" },
 };
 
 export default function LayananPage() {

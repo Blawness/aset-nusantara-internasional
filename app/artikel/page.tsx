@@ -4,10 +4,14 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import { ARTICLES } from "@/lib/articles";
 
+const description =
+  "Artikel dan wawasan seputar pemulihan, pemanfaatan, dan tata kelola aset oleh PT Aset Nusantara Internasional.";
+
 export const metadata: Metadata = {
-  title: "Artikel & Wawasan | PT Aset Nusantara Internasional",
-  description:
-    "Artikel dan wawasan seputar pemulihan, pemanfaatan, dan tata kelola aset oleh PT Aset Nusantara Internasional.",
+  title: "Artikel & Wawasan",
+  description,
+  alternates: { canonical: "/artikel" },
+  openGraph: { title: "Artikel & Wawasan", description, url: "/artikel", type: "website" },
 };
 
 export default function ArtikelPage() {

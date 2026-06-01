@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { getArticle, getAllSlugs } from "@/lib/articles";
+import { ArticleJsonLd } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -16,9 +17,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return { title: "Artikel tidak ditemukan" };
+  const url = `/artikel/${article.slug}`;
   return {
-    title: `${article.title} | PT Aset Nusantara Internasional`,
+    title: article.title,
     description: article.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url,
+      type: "article",
+      publishedTime: article.date,
+    },
   };
 }
 
@@ -39,6 +49,7 @@ export default async function ArtikelDetailPage({
 
   return (
     <main>
+      <ArticleJsonLd article={article} />
       <article className="mx-auto max-w-3xl px-6 pb-24 pt-36">
         <Link
           href="/artikel"
