@@ -25,8 +25,8 @@ export function HeroSection() {
           {words.map((w, i) => (
             <motion.span
               key={`${w}-${i}`}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 18 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.07 }}
               className="mr-3 inline-block"
             >
