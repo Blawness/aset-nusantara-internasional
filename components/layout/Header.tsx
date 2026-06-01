@@ -25,7 +25,9 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
         <a href="#beranda" className="flex items-center gap-3">
           <img src="/logo-ani.svg" alt={COMPANY_INFO.name} className="h-10 w-auto" />
-          <span className="hidden font-display text-lg text-cream sm:block">ANI</span>
+          <span className="hidden font-display text-base leading-tight text-cream sm:block md:text-lg">
+            {COMPANY_INFO.name}
+          </span>
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
