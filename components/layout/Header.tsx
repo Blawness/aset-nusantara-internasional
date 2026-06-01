@@ -32,7 +32,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
-          <img src="/logo-ani.svg" alt={COMPANY_INFO.name} className="h-10 w-auto" />
+          <img src="/logo-ani.webp" alt={COMPANY_INFO.name} className="h-10 w-auto" />
           <span className="hidden font-display text-base leading-tight text-cream sm:block md:text-lg">
             {COMPANY_INFO.name}
           </span>
