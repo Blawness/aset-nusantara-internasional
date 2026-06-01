@@ -1,9 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS, COMPANY_INFO } from "@/lib/constants";
 
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -23,22 +31,31 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
-        <a href="#beranda" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <img src="/logo-ani.svg" alt={COMPANY_INFO.name} className="h-10 w-auto" />
           <span className="hidden font-display text-base leading-tight text-cream sm:block md:text-lg">
             {COMPANY_INFO.name}
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-cream-muted transition-colors hover:text-gold-heritage">
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`text-sm transition-colors hover:text-gold-heritage ${
+                isActive(pathname, l.href) ? "text-gold-heritage" : "text-cream-muted"
+              }`}
+            >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a href="#kontak" className="rounded-full border border-gold-heritage px-5 py-2 text-sm text-gold-heritage transition-colors hover:bg-gold-heritage hover:text-navy-deep">
+          <Link
+            href="/kontak"
+            className="rounded-full border border-gold-heritage px-5 py-2 text-sm text-gold-heritage transition-colors hover:bg-gold-heritage hover:text-navy-deep"
+          >
             Hubungi Kami
-          </a>
+          </Link>
         </nav>
 
         <button className="text-cream md:hidden" onClick={() => setOpen(true)} aria-label="Buka menu">
@@ -55,9 +72,16 @@ export function Header() {
           </div>
           <nav className="flex flex-col items-center gap-8 pt-12">
             {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="font-display text-2xl text-cream">
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`font-display text-2xl ${
+                  isActive(pathname, l.href) ? "text-gold-heritage" : "text-cream"
+                }`}
+              >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
